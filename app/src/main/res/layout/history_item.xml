@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/historyLayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="20dp"
+
+    android:layout_marginBottom="20dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp"
+    android:weightSum="4"
+    android:background="@drawable/rounded_2"
+    >
+
+    <LinearLayout
+        android:layout_weight="3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <TextView
+        android:id="@+id/tvLocationHis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Thành phố"
+        android:paddingTop="4dp"
+        android:textSize="22dp"
+        android:textColor="#fff"/>
+
+    <TextView
+
+        android:id="@+id/tvCountryHis"
+        android:text="Đất nước"
+        android:textSize="18dp"
+        android:paddingBottom="4dp"
+        android:textColor="#fff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    </LinearLayout>
+
+    <TextView
+        android:layout_weight="1"
+        android:id="@+id/tvTempHis"
+        android:gravity="center|right"
+        android:text="27"
+        android:paddingRight="4dp"
+        android:textSize="36dp"
+        android:textColor="#fff"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        />
+    <TextView
+        android:text="°"
+        android:textSize="30dp"
+        android:textColor="#fff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+</LinearLayout>
