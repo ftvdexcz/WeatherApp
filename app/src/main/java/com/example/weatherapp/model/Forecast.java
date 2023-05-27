@@ -1,5 +1,7 @@
 package com.example.weatherapp.model;
 
+import java.util.ArrayList;
+
 public class Forecast {
     private String date;
     private String status;
@@ -8,6 +10,8 @@ public class Forecast {
     private String minTemp;
     private String wind;
 
+    private ArrayList<Integer> temps;
+
     public Forecast(String date, String status, String imageUrl, String maxTemp, String minTemp, String wind) {
         this.date = date;
         this.status = status;
@@ -15,6 +19,7 @@ public class Forecast {
         this.maxTemp = maxTemp;
         this.minTemp = minTemp;
         this.wind = wind;
+        this.temps = new ArrayList<>();
     }
 
     public String getDate() {
@@ -63,5 +68,13 @@ public class Forecast {
 
     public void setWind(String wind) {
         this.wind = wind;
+    }
+
+    public ArrayList<Integer> getTemps() {
+        return temps;
+    }
+
+    public void setTemps(ArrayList<Integer> temps) {
+        this.temps = temps;
     }
 }

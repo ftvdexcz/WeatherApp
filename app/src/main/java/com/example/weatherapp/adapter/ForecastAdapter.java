@@ -4,6 +4,7 @@ import static com.example.weatherapp.utils.Utils.formatDate;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,8 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weatherapp.R;
+import com.example.weatherapp.event.ClickItemListener;
+import com.example.weatherapp.event.ClickItemListenerChart;
 import com.example.weatherapp.model.Forecast;
 import com.squareup.picasso.Picasso;
 
@@ -23,13 +26,20 @@ import java.util.ArrayList;
 
 public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ForecastViewHolder> {
     private ArrayList<Forecast> mForecast;
+    private ClickItemListenerChart clickItemListener;
+
     private Context mContext;
+
+    ForecastViewHolder selectedHolder;
 
     public ForecastAdapter(ArrayList<Forecast> mForecast, Context mContext) {
         this.mForecast = mForecast;
         this.mContext = mContext;
     }
 
+    public void setClickItemListenerChart(ClickItemListenerChart clickItemListener) {
+        this.clickItemListener = clickItemListener;
+    }
 
     @NonNull
     @Override
@@ -49,6 +59,7 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
         Forecast f = mForecast.get(position);
 
         if(position == 0){
+            selectedHolder = holder;
             Drawable drawable = ContextCompat.getDrawable(mContext, R.drawable.rounded);
             holder.layout.setBackground(drawable);
         }
@@ -83,6 +94,16 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
             minTemp = itemView.findViewById(R.id.tvMinTempFC);
             wind = itemView.findViewById(R.id.tvWindFC);
             imageIcon = itemView.findViewById(R.id.imageIconFC);
+
+            // Xử lý sự kiện click trên item
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(clickItemListener != null){
+                        selectedHolder = clickItemListener.onItemClick(v, getAdapterPosition(), selectedHolder, ForecastViewHolder.this);
+                    }
+                }
+            });
         }
     }
 }

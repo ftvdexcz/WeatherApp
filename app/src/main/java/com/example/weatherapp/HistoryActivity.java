@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -23,9 +24,20 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.weatherapp.adapter.HistoryAdapter;
+import com.example.weatherapp.event.ClickItemListener;
 import com.example.weatherapp.model.Forecast;
 import com.example.weatherapp.model.LocationHis;
 import com.example.weatherapp.model.LocationHisFirebase;
+import com.example.weatherapp.utils.CustomLineChartRenderer;
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -46,11 +58,12 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Map;
 
-public class HistoryActivity extends AppCompatActivity implements HistoryAdapter.ClickItemListener {
+public class HistoryActivity extends AppCompatActivity implements ClickItemListener {
     ImageView imageBack;
     RecyclerView rvHistory;
     HistoryAdapter historyAdapter;
     ArrayList<LocationHis> histories;
+
 
     ArrayList<LocationHisFirebase> locationHisFirebases;
 
@@ -63,7 +76,10 @@ public class HistoryActivity extends AppCompatActivity implements HistoryAdapter
         init();
         Intent intent = getIntent();
         getHistory();
+
     }
+
+
 
     private void init() {
         imageBack = findViewById(R.id.imageBack2);

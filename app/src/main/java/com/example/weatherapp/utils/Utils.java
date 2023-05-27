@@ -3,12 +3,13 @@ package com.example.weatherapp.utils;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class Utils {
     public static String convertLocalTimeEpoch(String epoch) {
         long l = Long.valueOf(epoch);
         Date date = new Date(l * 1000L);
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEEE dd/MM");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEEE dd/MM", Locale.ENGLISH);
         return simpleDateFormat.format(date);
     }
 

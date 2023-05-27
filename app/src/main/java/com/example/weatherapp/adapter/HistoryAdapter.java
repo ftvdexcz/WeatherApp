@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weatherapp.R;
+import com.example.weatherapp.event.ClickItemListener;
 import com.example.weatherapp.model.LocationHis;
 
 import java.util.ArrayList;
@@ -81,7 +82,5 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
         }
     }
 
-    public interface ClickItemListener{
-        public void onItemClick(View view, int position);
-    }
+
 }
